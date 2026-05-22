@@ -7,6 +7,13 @@ export type Todo = {
 
 
 export type TodoFormProps = {
-    //onAdd
+    onAdd: (text:string) => void;
     inputRef: React.RefObject<HTMLInputElement | null >;
+}
+
+export type TodoListProps = {
+    todos: Todo[];
+    onToggle: (id: number) => void;
+    onEdit: (id: number, nextText: string) => void;
+    onDelete: (id: number) => void;
 }
