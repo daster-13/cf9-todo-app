@@ -17,3 +17,7 @@ export type TodoListProps = {
     onEdit: (id: number, nextText: string) => void;
     onDelete: (id: number) => void;
 }
+
+export type TodoStatsProps = {
+    todos: Todo[];
+}
