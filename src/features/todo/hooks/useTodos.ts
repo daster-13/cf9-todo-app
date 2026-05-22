@@ -1,9 +1,24 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import type {Todo} from "../types.ts"
 
+const getInitialTodos = () =>{
+    const stored = localStorage.getItem("todos");
+    return stored ? JSON.parse(stored) : [];
+}
 
 export const useTodos = () => {
-    const [todos, setTodos] = useState<Todo[]>([])
+    //State todos
+    // [
+    //     {id: Date.now(), text:'', completed:false},
+    //     {id: Date.now(), text:'', completed:true},
+    //
+    // ]
+
+    const [todos, setTodos] = useState<Todo[]>(getInitialTodos)
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos))
+    }, [todos])
 
     const addTodo = (text: string) => {
         setTodos((prev) =>
@@ -11,12 +26,7 @@ export const useTodos = () => {
                 {id: Date.now(), text: text,completed:false}]);
 
     }
-    //State todos
-    // [
-    //     {id: Date.now(), text:'', completed:false},
-    //     {id: Date.now(), text:'', completed:true},
-    //
-    // ]
+
 
     const deleteTodo = (id: number) => {
         setTodos(prev => prev.filter(todo => todo.id !== id)
