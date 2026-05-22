@@ -3,6 +3,7 @@ import TodoForm from "./TodoForm.tsx";
 import {useRef} from "react";
 import {useTodos} from "./hooks/useTodos.ts";
 import TodoList from "./TodoList.tsx";
+import TodoStats from "./TodoStats.tsx";
 
 const  TodoApp = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -24,6 +25,7 @@ const  TodoApp = () => {
                   onEdit={editTodo}
                   onDelete={deleteTodo}
                 />
+                <TodoStats todos={todos} />
             </div>
 
         </>
